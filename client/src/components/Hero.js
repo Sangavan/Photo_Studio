@@ -32,10 +32,11 @@ function Hero() {
         }}></div>
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto w-full pt-28 md:pt-24 pb-10">
+      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto w-full"
+        style={{ paddingTop: '6rem', paddingBottom: '2rem' }}>
 
         {/* SK COLORS Badge */}
-        <div className="flex justify-center mb-5 md:mb-8">
+        <div className="flex justify-center mb-4 md:mb-8">
           <div className="relative">
 
             {/* Outer glow */}
@@ -129,7 +130,7 @@ function Hero() {
         </div>
 
         {/* Main heading */}
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-3 md:mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-2 md:mb-6 leading-tight">
           Capturing Life's
           <br />
           <span style={{
@@ -141,7 +142,7 @@ function Hero() {
         </h1>
 
         {/* Slogan */}
-        <div className="flex items-center justify-center gap-2 md:gap-3 mb-3">
+        <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-4">
           <div className="w-8 md:w-12 h-px bg-blue-600"></div>
           <p className="text-sm md:text-xl text-blue-300 font-medium italic">
             Where every photo tells your story
@@ -149,15 +150,15 @@ function Hero() {
           <div className="w-8 md:w-12 h-px bg-blue-600"></div>
         </div>
 
-        {/* Description */}
-        <p className="text-xs md:text-lg text-gray-400 mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+        {/* Description — hidden on landscape mobile */}
+        <p className="hidden sm:block text-xs md:text-lg text-gray-400 mb-4 md:mb-10 max-w-2xl mx-auto leading-relaxed">
           Professional photography for weddings, portraits, events and
           commercial shoots in Sri Lanka — where every moment
           is beautifully preserved forever.
         </p>
 
-        {/* Buttons — side by side on ALL screens */}
-        <div className="flex flex-row gap-3 justify-center mb-6 md:mb-16">
+        {/* Buttons */}
+        <div className="flex flex-row gap-3 justify-center mb-4 md:mb-16">
           <Link
             to="/booking"
             className="flex items-center justify-center gap-1.5 text-white font-bold px-4 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200"
@@ -200,7 +201,7 @@ function Hero() {
           </Link>
         </div>
 
-        {/* Stats — always in a row */}
+        {/* Stats */}
         <div className="flex flex-row gap-0 justify-center border border-blue-800 rounded-2xl overflow-hidden w-full max-w-xs sm:max-w-lg mx-auto"
           style={{ background: 'linear-gradient(135deg, #0a162888, #1e3a8a22)' }}>
 
@@ -244,8 +245,8 @@ function Hero() {
 
       </div>
 
-      {/* Scroll down indicator */}
-      <div className="absolute bottom-6 z-20 text-center w-full">
+      {/* Scroll down — hidden on small screens */}
+      <div className="absolute bottom-4 z-20 text-center w-full hidden sm:block">
         <p className="text-blue-500 text-xs mb-1 tracking-widest uppercase">Scroll Down</p>
         <div className="flex justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
