@@ -32,18 +32,18 @@ function Hero() {
         }}></div>
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto w-full">
+      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto w-full pt-20 pb-10">
 
-        {/* SK COLORS Badge with LED border */}
-        <div className="flex justify-center mb-6 md:mb-8">
+        {/* SK COLORS Badge */}
+        <div className="flex justify-center mb-5 md:mb-8">
           <div className="relative">
 
             {/* Outer glow */}
             <div className="absolute inset-0 rounded-2xl blur-md opacity-40"
               style={{ background: 'linear-gradient(135deg, #1E40AF, #3B82F6, #1E40AF)' }}></div>
 
-            {/* Main badge content */}
-            <div className="relative flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2.5 md:py-3 badge-led-glow"
+            {/* Main badge */}
+            <div className="relative flex items-center gap-2 px-3 md:px-5 py-2 md:py-3 badge-led-glow"
               style={{
                 background: 'linear-gradient(135deg, #0a1628, #1e3a8a55, #0a1628)',
               }}>
@@ -52,12 +52,12 @@ function Hero() {
               <div className="relative">
                 <div className="absolute inset-0 blur-sm rounded-lg"
                   style={{ background: '#1E40AF' }}></div>
-                <div className="relative w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center border"
+                <div className="relative w-6 h-6 md:w-9 md:h-9 rounded-lg flex items-center justify-center border"
                   style={{
                     background: 'linear-gradient(135deg, #1E40AF, #3B82F6)',
                     borderColor: '#60A5FA44'
                   }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                     <circle cx="12" cy="13" r="4"/>
                   </svg>
@@ -66,23 +66,20 @@ function Hero() {
 
               {/* Center text */}
               <div className="flex flex-col items-center">
-
-                {/* Top decorative line */}
-                <div className="flex items-center gap-2 mb-0.5">
-                  <div className="w-5 md:w-6 h-px"
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <div className="w-4 md:w-6 h-px"
                     style={{ background: 'linear-gradient(to right, transparent, #3B82F6)' }}></div>
                   <div className="w-1 h-1 rounded-full bg-blue-400"></div>
-                  <div className="w-5 md:w-6 h-px"
+                  <div className="w-4 md:w-6 h-px"
                     style={{ background: 'linear-gradient(to left, transparent, #3B82F6)' }}></div>
                 </div>
 
-                {/* Main text */}
-                <div className="flex items-baseline gap-1.5 md:gap-2">
-                  <span className="text-base md:text-xl font-black tracking-widest text-white"
-                    style={{ letterSpacing: '0.15em' }}>SK</span>
-                  <span className="text-base md:text-xl font-black tracking-widest"
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-sm md:text-xl font-black text-white"
+                    style={{ letterSpacing: '0.1em' }}>SK</span>
+                  <span className="text-sm md:text-xl font-black"
                     style={{
-                      letterSpacing: '0.15em',
+                      letterSpacing: '0.1em',
                       background: 'linear-gradient(135deg, #60A5FA, #93C5FD, #3B82F6)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
@@ -90,35 +87,32 @@ function Hero() {
                     }}>COLORS</span>
                 </div>
 
-                {/* Subtitle */}
-                <div className="flex items-center gap-1.5 mt-0.5">
+                <div className="flex items-center gap-1 mt-0.5">
                   <div className="w-1 h-1 rounded-full bg-blue-500"></div>
-                  <span className="text-xs font-bold text-blue-400 uppercase"
-                    style={{ letterSpacing: '0.15em', fontSize: '0.6rem' }}>Photography Studio</span>
+                  <span className="font-bold text-blue-400 uppercase"
+                    style={{ letterSpacing: '0.1em', fontSize: '0.5rem' }}>Photography Studio</span>
                   <div className="w-1 h-1 rounded-full bg-blue-500"></div>
                 </div>
 
-                {/* Bottom decorative line */}
-                <div className="flex items-center gap-2 mt-0.5">
-                  <div className="w-5 md:w-6 h-px"
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <div className="w-4 md:w-6 h-px"
                     style={{ background: 'linear-gradient(to right, transparent, #3B82F6)' }}></div>
                   <div className="w-1 h-1 rounded-full bg-blue-400"></div>
-                  <div className="w-5 md:w-6 h-px"
+                  <div className="w-4 md:w-6 h-px"
                     style={{ background: 'linear-gradient(to left, transparent, #3B82F6)' }}></div>
                 </div>
-
               </div>
 
               {/* Right aperture icon */}
               <div className="relative">
                 <div className="absolute inset-0 blur-sm rounded-lg"
                   style={{ background: '#1E3A8A' }}></div>
-                <div className="relative w-7 h-7 md:w-9 md:h-9 rounded-lg flex items-center justify-center border"
+                <div className="relative w-6 h-6 md:w-9 md:h-9 rounded-lg flex items-center justify-center border"
                   style={{
                     background: 'linear-gradient(135deg, #1e3a8a, #1E40AF)',
                     borderColor: '#60A5FA44'
                   }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"/>
                     <line x1="14.31" y1="8" x2="20.05" y2="17.94"/>
                     <line x1="9.69" y1="8" x2="21.17" y2="8"/>
@@ -135,7 +129,7 @@ function Hero() {
         </div>
 
         {/* Main heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 md:mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-3 md:mb-6 leading-tight">
           Capturing Life's
           <br />
           <span style={{
@@ -147,33 +141,33 @@ function Hero() {
         </h1>
 
         {/* Slogan */}
-        <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
+        <div className="flex items-center justify-center gap-2 md:gap-3 mb-3">
           <div className="w-8 md:w-12 h-px bg-blue-600"></div>
-          <p className="text-base md:text-xl text-blue-300 font-medium italic">
+          <p className="text-sm md:text-xl text-blue-300 font-medium italic">
             Where every photo tells your story
           </p>
           <div className="w-8 md:w-12 h-px bg-blue-600"></div>
         </div>
 
         {/* Description */}
-        <p className="text-sm md:text-lg text-gray-400 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xs md:text-lg text-gray-400 mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed">
           Professional photography for weddings, portraits, events and
           commercial shoots in Sri Lanka — where every moment
           is beautifully preserved forever.
         </p>
 
-        {/* Buttons */}
-        <div className="flex flex-row gap-3 justify-center mb-10 md:mb-16 flex-wrap">
+        {/* Buttons — side by side on ALL screens */}
+        <div className="flex flex-row gap-3 justify-center mb-6 md:mb-16">
           <Link
             to="/booking"
-            className="flex items-center justify-center gap-2 text-white font-bold px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200"
+            className="flex items-center justify-center gap-1.5 text-white font-bold px-4 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200"
             style={{
               background: 'linear-gradient(135deg, #1E40AF, #3B82F6)',
               boxShadow: '0 0 25px #1E40AF77'
             }}
             onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 35px #3B82F6aa'}
             onMouseLeave={e => e.currentTarget.style.boxShadow = '0 0 25px #1E40AF77'}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
@@ -183,7 +177,7 @@ function Hero() {
           </Link>
           <Link
             to="/portfolio"
-            className="flex items-center justify-center gap-2 font-bold px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200 border-2"
+            className="flex items-center justify-center gap-1.5 font-bold px-4 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200 border-2"
             style={{
               borderColor: '#3B82F6',
               color: '#60A5FA',
@@ -197,7 +191,7 @@ function Hero() {
               e.currentTarget.style.background = 'transparent';
               e.currentTarget.style.borderColor = '#3B82F6';
             }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
               <polyline points="21 15 16 10 5 21"/>
@@ -206,44 +200,44 @@ function Hero() {
           </Link>
         </div>
 
-        {/* Stats */}
+        {/* Stats — always in a row */}
         <div className="flex flex-row gap-0 justify-center border border-blue-800 rounded-2xl overflow-hidden w-full max-w-xs sm:max-w-lg mx-auto"
           style={{ background: 'linear-gradient(135deg, #0a162888, #1e3a8a22)' }}>
 
-          <div className="flex-1 py-3 px-2 md:px-6 text-center border-r border-blue-800">
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex-1 py-2.5 md:py-4 px-1 md:px-6 text-center border-r border-blue-800">
+            <div className="flex items-center justify-center gap-1 mb-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
-              <p className="text-base md:text-2xl font-black text-white">500+</p>
+              <p className="text-sm md:text-2xl font-black text-white">500+</p>
             </div>
-            <p className="text-blue-400 text-xs font-medium tracking-wider uppercase">Happy Clients</p>
+            <p className="text-blue-400 font-medium uppercase" style={{ fontSize: '0.5rem' }}>Happy Clients</p>
           </div>
 
-          <div className="flex-1 py-3 md:py-4 px-4 md:px-6 text-center border-b sm:border-b-0 sm:border-r border-blue-800">
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex-1 py-2.5 md:py-4 px-1 md:px-6 text-center border-r border-blue-800">
+            <div className="flex items-center justify-center gap-1 mb-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                 <circle cx="8.5" cy="8.5" r="1.5"/>
                 <polyline points="21 15 16 10 5 21"/>
               </svg>
-              <p className="text-xl md:text-2xl font-black text-white">1200+</p>
+              <p className="text-sm md:text-2xl font-black text-white">1200+</p>
             </div>
-            <p className="text-blue-400 text-xs font-medium tracking-wider uppercase">Photos Delivered</p>
+            <p className="text-blue-400 font-medium uppercase" style={{ fontSize: '0.5rem' }}>Photos Delivered</p>
           </div>
 
-          <div className="flex-1 py-3 md:py-4 px-4 md:px-6 text-center">
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex-1 py-2.5 md:py-4 px-1 md:px-6 text-center">
+            <div className="flex items-center justify-center gap-1 mb-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="8" r="6"/>
                 <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
               </svg>
-              <p className="text-xl md:text-2xl font-black text-white">5+</p>
+              <p className="text-sm md:text-2xl font-black text-white">5+</p>
             </div>
-            <p className="text-blue-400 text-xs font-medium tracking-wider uppercase">Years Experience</p>
+            <p className="text-blue-400 font-medium uppercase" style={{ fontSize: '0.5rem' }}>Years Experience</p>
           </div>
 
         </div>
@@ -251,10 +245,10 @@ function Hero() {
       </div>
 
       {/* Scroll down indicator */}
-      <div className="absolute bottom-8 z-20 text-center w-full">
-        <p className="text-blue-500 text-xs mb-2 tracking-widest uppercase">Scroll Down</p>
+      <div className="absolute bottom-6 z-20 text-center w-full">
+        <p className="text-blue-500 text-xs mb-1 tracking-widest uppercase">Scroll Down</p>
         <div className="flex justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
         </div>
