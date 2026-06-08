@@ -32,7 +32,7 @@ function Hero() {
         }}></div>
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto w-full pt-20 pb-10">
+      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto w-full pt-28 md:pt-24 pb-10">
 
         {/* SK COLORS Badge */}
         <div className="flex justify-center mb-5 md:mb-8">
