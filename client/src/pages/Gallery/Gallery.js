@@ -11,7 +11,7 @@ function Gallery() {
   const [clientGallery, setClientGallery] = useState(null);
   const [galleryLoading, setGalleryLoading] = useState(false);
   const [galleryError, setGalleryError] = useState('');
-  const [token, setToken] = useState('');
+  const [, setToken] = useState('');
 
   // Check if already logged in
   useEffect(() => {
