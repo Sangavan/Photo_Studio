@@ -47,7 +47,7 @@ function Navbar() {
 
             {/* Home */}
             <Link to="/"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition duration-200"
+              className="flex items-center gap-2 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm font-semibold transition duration-200"
               style={{
                 backgroundColor: isActive('/') ? '#1E3A8A' : 'transparent',
                 color: isActive('/') ? '#ffffff' : '#93C5FD',
@@ -209,7 +209,7 @@ function Navbar() {
 
             {/* Client Login Button */}
             <Link to="/gallery"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition duration-200 border"
+              className="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition duration-200 border"
               style={{
                 color: '#93C5FD',
                 borderColor: '#1E40AF',
@@ -370,7 +370,7 @@ function Navbar() {
             {/* Book Now */}
             <Link to="/booking"
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 text-white px-4 py-3 rounded-xl text-sm font-bold transition duration-200 w-full"
+              className="flex items-center gap-2 text-white px-3 py-2 md:px-4 md:py-2.5 rounded-xl text-xs md:text-sm font-bold transition duration-200 shadow-lg"
               style={{ backgroundColor: '#1E40AF' }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
