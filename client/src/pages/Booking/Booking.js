@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-
-const packages = [
-  { id: 1, name: 'Basic', price: 'LKR 25,000', duration: '2 Hours' },
-  { id: 2, name: 'Standard', price: 'LKR 50,000', duration: '4 Hours' },
-  { id: 3, name: 'Premium', price: 'LKR 100,000', duration: 'Full Day' },
-];
 
 const sessionTypes = [
   'Wedding Photography',
@@ -21,6 +15,8 @@ const sessionTypes = [
 
 function Booking() {
   const [step, setStep] = useState(1);
+  const [packages, setPackages] = useState([]);
+  const [packagesLoading, setPackagesLoading] = useState(true);
   const [formData, setFormData] = useState({
     package: '',
     sessionType: '',
@@ -34,6 +30,24 @@ function Booking() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Fetch packages from API
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/packages`);
+        if (response.ok) {
+          const data = await response.json();
+          setPackages(data);
+        }
+      } catch (error) {
+        console.log('Error fetching packages:', error);
+      } finally {
+        setPackagesLoading(false);
+      }
+    };
+    fetchPackages();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -64,17 +78,13 @@ function Booking() {
     }
   };
 
-  // Step 1 valid check
+  // Step valid checks
   const step1Valid = formData.package !== '';
-
-  // Step 2 valid check
   const step2Valid =
     formData.sessionType !== '' &&
     formData.date !== '' &&
     formData.time !== '' &&
     formData.location !== '';
-
-  // Step 3 valid check
   const step3Valid =
     formData.name !== '' &&
     formData.email !== '' &&
@@ -82,7 +92,6 @@ function Booking() {
 
   const inputClass = "w-full px-4 py-3 rounded-xl text-sm outline-none border border-blue-800 transition duration-200 bg-blue-950 text-white placeholder-blue-700";
 
-  // Button styles
   const activeNextBtn = {
     background: 'linear-gradient(135deg, #1E40AF, #3B82F6)',
     color: '#ffffff',
@@ -147,7 +156,7 @@ function Booking() {
               </p>
               <div className="space-y-2">
                 {[
-                  { icon: '📦', label: 'Package', value: formData.package },
+                  { icon: '📦', label: 'Package', value: `${formData.package} — ${packages.find(p => p.name === formData.package)?.price || ''}` },
                   { icon: '📷', label: 'Session', value: formData.sessionType },
                   { icon: '📅', label: 'Date', value: formData.date },
                   { icon: '🕐', label: 'Time', value: formData.time },
@@ -240,32 +249,42 @@ function Booking() {
                   <p className="text-blue-300 text-sm mb-6">
                     Select the package that best fits your needs
                   </p>
+
                   <div className="space-y-4 mb-8">
-                    {packages.map((pkg) => (
-                      <div
-                        key={pkg.id}
-                        onClick={() => setFormData({ ...formData, package: pkg.name })}
-                        className="flex items-center justify-between p-5 rounded-xl border cursor-pointer transition duration-200"
-                        style={{
-                          backgroundColor: formData.package === pkg.name ? '#1E3A8A22' : '#060B18',
-                          borderColor: formData.package === pkg.name ? '#3B82F6' : '#1E3A8A',
-                          boxShadow: formData.package === pkg.name ? '0 0 15px #1E40AF44' : 'none',
-                        }}>
-                        <div className="flex items-center gap-4">
-                          <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center transition duration-200"
-                            style={{ borderColor: formData.package === pkg.name ? '#3B82F6' : '#1E3A8A' }}>
-                            {formData.package === pkg.name && (
-                              <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
-                            )}
-                          </div>
-                          <div>
-                            <p className="text-white font-bold">{pkg.name} Package</p>
-                            <p className="text-blue-400 text-sm">{pkg.duration}</p>
-                          </div>
-                        </div>
-                        <p className="text-blue-400 font-bold">{pkg.price}</p>
+                    {packagesLoading ? (
+                      <div className="text-center py-8">
+                        <svg className="animate-spin mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2">
+                          <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                        </svg>
+                        <p className="text-blue-400 text-sm">Loading packages...</p>
                       </div>
-                    ))}
+                    ) : (
+                      packages.map((pkg) => (
+                        <div
+                          key={pkg._id}
+                          onClick={() => setFormData({ ...formData, package: pkg.name })}
+                          className="flex items-center justify-between p-5 rounded-xl border cursor-pointer transition duration-200"
+                          style={{
+                            backgroundColor: formData.package === pkg.name ? '#1E3A8A22' : '#060B18',
+                            borderColor: formData.package === pkg.name ? '#3B82F6' : '#1E3A8A',
+                            boxShadow: formData.package === pkg.name ? '0 0 15px #1E40AF44' : 'none',
+                          }}>
+                          <div className="flex items-center gap-4">
+                            <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center transition duration-200"
+                              style={{ borderColor: formData.package === pkg.name ? '#3B82F6' : '#1E3A8A' }}>
+                              {formData.package === pkg.name && (
+                                <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                              )}
+                            </div>
+                            <div>
+                              <p className="text-white font-bold">{pkg.name} Package</p>
+                              <p className="text-blue-400 text-sm">{pkg.duration}</p>
+                            </div>
+                          </div>
+                          <p className="text-blue-400 font-bold">{pkg.price}</p>
+                        </div>
+                      ))
+                    )}
                   </div>
 
                   {/* Next Button Step 1 */}
@@ -317,7 +336,6 @@ function Booking() {
                   </p>
                   <div className="space-y-4 mb-8">
 
-                    {/* Session Type */}
                     <div>
                       <label className="block text-sm font-medium mb-2 text-blue-300">
                         Session Type *
@@ -336,7 +354,6 @@ function Booking() {
                       </select>
                     </div>
 
-                    {/* Date & Time */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium mb-2 text-blue-300">
@@ -379,7 +396,6 @@ function Booking() {
                       </div>
                     </div>
 
-                    {/* Location */}
                     <div>
                       <label className="block text-sm font-medium mb-2 text-blue-300">
                         Shoot Location *
@@ -399,7 +415,6 @@ function Booking() {
                   </div>
 
                   <div className="flex gap-3">
-                    {/* Back Button */}
                     <button
                       onClick={handleBack}
                       className="px-6 py-4 rounded-xl font-bold border transition duration-300 flex items-center gap-2"
@@ -420,7 +435,6 @@ function Booking() {
                       Back
                     </button>
 
-                    {/* Next Button Step 2 */}
                     <button
                       onClick={step2Valid ? handleNext : undefined}
                       disabled={!step2Valid}
@@ -470,7 +484,6 @@ function Booking() {
                   </p>
                   <div className="space-y-4 mb-8">
 
-                    {/* Name */}
                     <div>
                       <label className="block text-sm font-medium mb-2 text-blue-300">
                         Full Name *
@@ -488,7 +501,6 @@ function Booking() {
                       />
                     </div>
 
-                    {/* Email & Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium mb-2 text-blue-300">
@@ -524,7 +536,6 @@ function Booking() {
                       </div>
                     </div>
 
-                    {/* Notes */}
                     <div>
                       <label className="block text-sm font-medium mb-2 text-blue-300">
                         Special Notes (Optional)
@@ -553,7 +564,7 @@ function Booking() {
                       </p>
                       <div className="space-y-1.5">
                         {[
-                          { label: 'Package', value: formData.package },
+                          { label: 'Package', value: `${formData.package} — ${packages.find(p => p.name === formData.package)?.price || ''}` },
                           { label: 'Session', value: formData.sessionType },
                           { label: 'Date', value: formData.date },
                           { label: 'Time', value: formData.time },
@@ -569,7 +580,6 @@ function Booking() {
                   </div>
 
                   <div className="flex gap-3">
-                    {/* Back Button */}
                     <button
                       type="button"
                       onClick={handleBack}
@@ -591,7 +601,6 @@ function Booking() {
                       Back
                     </button>
 
-                    {/* Confirm Booking Button */}
                     <button
                       type="submit"
                       disabled={loading || !step3Valid}
