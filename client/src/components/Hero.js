@@ -163,10 +163,10 @@ function Hero() {
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-10 md:mb-16">
+        <div className="flex flex-row gap-3 justify-center mb-10 md:mb-16 flex-wrap">
           <Link
             to="/booking"
-            className="flex items-center justify-center gap-2 text-white font-bold px-6 py-3 md:px-8 md:py-3.5 rounded-xl text-sm md:text-base transition duration-200"
+            className="flex items-center justify-center gap-2 text-white font-bold px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200"
             style={{
               background: 'linear-gradient(135deg, #1E40AF, #3B82F6)',
               boxShadow: '0 0 25px #1E40AF77'
@@ -183,7 +183,7 @@ function Hero() {
           </Link>
           <Link
             to="/portfolio"
-            className="flex items-center justify-center gap-2 font-bold px-6 py-3 md:px-8 md:py-3.5 rounded-xl text-sm md:text-base transition duration-200 border-2"
+            className="flex items-center justify-center gap-2 font-bold px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl text-xs md:text-base transition duration-200 border-2"
             style={{
               borderColor: '#3B82F6',
               color: '#60A5FA',
@@ -207,10 +207,10 @@ function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="flex flex-col sm:flex-row gap-0 justify-center border border-blue-800 rounded-2xl overflow-hidden max-w-xs sm:max-w-lg mx-auto"
+        <div className="flex flex-row gap-0 justify-center border border-blue-800 rounded-2xl overflow-hidden w-full max-w-xs sm:max-w-lg mx-auto"
           style={{ background: 'linear-gradient(135deg, #0a162888, #1e3a8a22)' }}>
 
-          <div className="flex-1 py-3 md:py-4 px-4 md:px-6 text-center border-b sm:border-b-0 sm:border-r border-blue-800">
+          <div className="flex-1 py-3 px-2 md:px-6 text-center border-r border-blue-800">
             <div className="flex items-center justify-center gap-2 mb-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -218,7 +218,7 @@ function Hero() {
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
-              <p className="text-xl md:text-2xl font-black text-white">500+</p>
+              <p className="text-base md:text-2xl font-black text-white">500+</p>
             </div>
             <p className="text-blue-400 text-xs font-medium tracking-wider uppercase">Happy Clients</p>
           </div>
