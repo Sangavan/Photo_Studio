@@ -208,7 +208,7 @@ function Navbar() {
 
             {/* Client Login — only on large screens */}
             <Link to="/gallery"
-              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs lg:text-sm font-semibold transition duration-200 border whitespace-nowrap"
+              className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs lg:text-sm font-semibold transition duration-200 border whitespace-nowrap"
               style={{
                 color: '#93C5FD',
                 borderColor: '#1E40AF',
