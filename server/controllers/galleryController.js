@@ -1,7 +1,7 @@
 const Gallery = require('../models/Gallery');
 const User = require('../models/User');
 const cloudinary = require('cloudinary').v2;
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
 // Cloudinary config
 cloudinary.config({
@@ -10,16 +10,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Email transporter
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // @desc    Upload photos to client gallery
 // @route   POST /api/gallery/upload
@@ -37,7 +28,6 @@ const uploadPhotos = async (req, res) => {
     let tempPassword = null;
 
     if (!client) {
-      // Generate strong temp password
       tempPassword =
         Math.random().toString(36).slice(-6) +
         Math.random().toString(36).slice(-4).toUpperCase() +
@@ -104,23 +94,20 @@ const notifyClient = async (req, res) => {
       return res.status(404).json({ message: 'Gallery not found' });
     }
 
-    // Get temp password from request body if provided
     const tempPassword = req.body.tempPassword || null;
 
-    await transporter.sendMail({
-      from: `"SK Colors Photography" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: 'SK Colors Photography <onboarding@resend.dev>',
       to: gallery.clientEmail,
       subject: 'Your Photos Are Ready! — SK Colors Photography',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f0f4ff; padding: 20px;">
 
-          <!-- Header -->
           <div style="background: linear-gradient(135deg, #1E40AF, #3B82F6); padding: 30px 20px; border-radius: 12px 12px 0 0; text-align: center;">
             <h1 style="color: white; margin: 0; font-size: 26px; letter-spacing: 1px;">📷 SK Colors Photography</h1>
             <p style="color: #BFDBFE; margin: 8px 0 0;">Capturing Life's True Colors</p>
           </div>
 
-          <!-- Body -->
           <div style="background: white; padding: 35px 30px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
 
             <h2 style="color: #1E40AF; margin-top: 0;">Your Photos Are Ready! 🎉</h2>
@@ -129,7 +116,6 @@ const notifyClient = async (req, res) => {
               Great news! Your photos from the <strong>${gallery.sessionType}</strong> session are now ready to view and download. We hope you love them!
             </p>
 
-            <!-- Session Details -->
             <div style="background: #EFF6FF; padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #1E40AF;">
               <h3 style="color: #1E40AF; margin: 0 0 10px;">📋 Session Details</h3>
               <p style="margin: 5px 0; color: #374151;"><strong>Session Type:</strong> ${gallery.sessionType}</p>
@@ -138,7 +124,6 @@ const notifyClient = async (req, res) => {
               <p style="margin: 5px 0; color: #374151;"><strong>Gallery Expires:</strong> ${new Date(gallery.expiryDate).toDateString()}</p>
             </div>
 
-            <!-- Login Details -->
             <div style="background: #1E3A8A; padding: 20px 24px; border-radius: 10px; margin: 20px 0;">
               <h3 style="color: #ffffff; margin: 0 0 14px; font-size: 16px;">🔐 Your Login Details</h3>
               <table style="width: 100%; border-collapse: collapse;">
@@ -165,7 +150,6 @@ const notifyClient = async (req, res) => {
               ${tempPassword ? `<p style="color: #64748B; font-size: 12px; margin: 12px 0 0;">⚠️ Please save this password. We recommend changing it after your first login for security.</p>` : ''}
             </div>
 
-            <!-- CTA Button -->
             <div style="text-align: center; margin: 30px 0;">
               <a href="${process.env.CLIENT_URL}/gallery"
                 style="background: linear-gradient(135deg, #1E40AF, #3B82F6); color: white; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">
@@ -173,23 +157,20 @@ const notifyClient = async (req, res) => {
               </a>
             </div>
 
-            <!-- Warning -->
             <div style="background: #FEF2F2; border: 1px solid #FECACA; padding: 12px 16px; border-radius: 8px; margin: 20px 0;">
               <p style="color: #DC2626; margin: 0; font-size: 13px;">
                 ⚠️ <strong>Important:</strong> Your gallery will expire on <strong>${new Date(gallery.expiryDate).toDateString()}</strong>.
-                Please download all your photos before this date as expired galleries cannot be recovered.
+                Please download all your photos before this date.
               </p>
             </div>
 
-            <!-- Contact -->
             <p style="color: #6B7280; font-size: 14px; margin-top: 20px;">
-              If you have any questions or need help accessing your gallery, please contact us:
+              If you have any questions contact us:
             </p>
             <p style="color: #374151; font-size: 14px;">
-              📞 +94 77 123 4567 &nbsp;|&nbsp; ✉️ ${process.env.EMAIL_USER}
+              📞 +94 77 123 4567 &nbsp;|&nbsp; ✉️ skcolorsstudio@gmail.com
             </p>
 
-            <!-- Footer -->
             <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 24px 0;" />
             <p style="color: #9CA3AF; font-size: 12px; text-align: center; margin: 0;">
               © 2024 SK Colors Photography. All rights reserved.<br/>
@@ -200,11 +181,13 @@ const notifyClient = async (req, res) => {
       `,
     });
 
+    console.log('Gallery notification email sent to:', gallery.clientEmail);
     gallery.notified = true;
     await gallery.save();
 
     res.json({ message: 'Client notified successfully' });
   } catch (error) {
+    console.log('Notify error:', error.message);
     res.status(500).json({ message: error.message });
   }
 };
@@ -223,7 +206,6 @@ const getMyGallery = async (req, res) => {
       return res.status(404).json({ message: 'No gallery found' });
     }
 
-    // Check if expired
     if (new Date() > new Date(gallery.expiryDate)) {
       return res.status(410).json({ message: 'Gallery has expired' });
     }
@@ -261,10 +243,7 @@ const deletePhoto = async (req, res) => {
       return res.status(404).json({ message: 'Photo not found' });
     }
 
-    // Delete from Cloudinary
     await cloudinary.uploader.destroy(photo.publicId);
-
-    // Remove from gallery
     gallery.photos.pull(req.params.photoId);
     await gallery.save();
 

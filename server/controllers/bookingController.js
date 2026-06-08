@@ -1,17 +1,8 @@
 const Booking = require('../models/Booking');
 const User = require('../models/User');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-// Email transporter setup
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // @desc    Create new booking
 // @route   POST /api/bookings
@@ -46,8 +37,8 @@ const createBooking = async (req, res) => {
 
     // Send confirmation email to client
     try {
-      await transporter.sendMail({
-        from: `"SK Colors Photography" <${process.env.EMAIL_USER}>`,
+      await resend.emails.send({
+        from: 'SK Colors Photography <onboarding@resend.dev>',
         to: email,
         subject: 'Booking Confirmation — SK Colors Photography',
         html: `
@@ -70,13 +61,13 @@ const createBooking = async (req, res) => {
                 ${notes ? `<p><strong>Notes:</strong> ${notes}</p>` : ''}
               </div>
               <p>We will contact you within 24 hours to confirm your booking.</p>
-              <p>If you have any questions, please contact us at:</p>
-              <p>📞 +94 77 123 4567 | ✉️ info@skcolors.lk</p>
+              <p>📞 +94 77 123 4567 | ✉️ skcolorsstudio@gmail.com</p>
               <p style="color: #6B7280; font-size: 12px; margin-top: 30px;">© 2024 SK Colors Photography. All rights reserved.</p>
             </div>
           </div>
         `,
       });
+      console.log('Booking confirmation email sent to:', email);
     } catch (emailError) {
       console.log('Email error:', emailError.message);
     }
