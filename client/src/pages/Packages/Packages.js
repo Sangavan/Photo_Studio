@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
@@ -6,6 +7,7 @@ function Packages() {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -157,10 +159,14 @@ function Packages() {
               Click below to proceed to booking.
             </p>
             <div className="flex gap-3">
-              <a href="/booking"
+              <button
+                onClick={() => {
+                  setSelected(null);
+                  navigate(`/booking?package=${encodeURIComponent(selected.name)}`);
+                }}
                 className="flex-1 py-3 rounded-xl font-bold text-center text-white bg-blue-600 hover:bg-blue-500 transition duration-200">
                 Proceed to Booking
-              </a>
+              </button>
               <button
                 onClick={() => setSelected(null)}
                 className="px-5 py-3 rounded-xl font-bold border border-blue-700 text-blue-300 hover:bg-blue-900 transition duration-200">

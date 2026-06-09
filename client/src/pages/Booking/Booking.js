@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
@@ -17,6 +18,7 @@ function Booking() {
   const [step, setStep] = useState(1);
   const [packages, setPackages] = useState([]);
   const [packagesLoading, setPackagesLoading] = useState(true);
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     package: '',
     sessionType: '',
@@ -48,6 +50,15 @@ function Booking() {
     };
     fetchPackages();
   }, []);
+
+  // Auto select package from URL and skip to step 2
+  useEffect(() => {
+    const pkgName = searchParams.get('package');
+    if (pkgName) {
+      setFormData(prev => ({ ...prev, package: pkgName }));
+      setStep(2);
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -171,7 +182,6 @@ function Booking() {
               </div>
             </div>
 
-            {/* Make Another Booking Button */}
             <button
               onClick={() => {
                 setSubmitted(false);
@@ -287,7 +297,6 @@ function Booking() {
                     )}
                   </div>
 
-                  {/* Next Button Step 1 */}
                   <button
                     onClick={step1Valid ? handleNext : undefined}
                     disabled={!step1Valid}
@@ -328,6 +337,29 @@ function Booking() {
               {/* STEP 2 — Session Details */}
               {step === 2 && (
                 <div>
+                  {/* Selected Package Info Bar */}
+                  {formData.package && (
+                    <div className="flex items-center justify-between p-3 rounded-xl border border-blue-700 mb-6"
+                      style={{ backgroundColor: '#1E3A8A22' }}>
+                      <div className="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <p className="text-blue-300 text-sm">
+                          Selected: <span className="text-white font-bold">{formData.package} Package</span>
+                          {packages.find(p => p.name === formData.package) && (
+                            <span className="text-blue-400"> — {packages.find(p => p.name === formData.package)?.price}</span>
+                          )}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => { setFormData({ ...formData, package: '' }); setStep(1); }}
+                        className="text-blue-400 hover:text-white text-xs transition duration-200">
+                        Change
+                      </button>
+                    </div>
+                  )}
+
                   <h3 className="text-2xl font-bold text-white mb-2">
                     Session Details
                   </h3>
