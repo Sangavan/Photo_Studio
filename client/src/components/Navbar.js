@@ -71,31 +71,7 @@ function Navbar() {
               Home
             </Link>
 
-            {/* About */}
-            <Link to="/about"
-              className="flex items-center gap-1.5 px-2 lg:px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold transition duration-200 whitespace-nowrap"
-              style={{
-                backgroundColor: isActive('/about') ? '#1E3A8A' : 'transparent',
-                color: isActive('/about') ? '#ffffff' : '#93C5FD',
-              }}
-              onMouseEnter={e => {
-                if (!isActive('/about')) {
-                  e.currentTarget.style.backgroundColor = '#1E3A8A';
-                  e.currentTarget.style.color = '#ffffff';
-                }
-              }}
-              onMouseLeave={e => {
-                if (!isActive('/about')) {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#93C5FD';
-                }
-              }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-              About
-            </Link>
+            
 
             {/* Portfolio */}
             <Link to="/portfolio"
@@ -152,6 +128,32 @@ function Navbar() {
                 <line x1="3" y1="18" x2="3.01" y2="18"/>
               </svg>
               Packages
+            </Link>
+
+            {/* About */}
+            <Link to="/about"
+              className="flex items-center gap-1.5 px-2 lg:px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold transition duration-200 whitespace-nowrap"
+              style={{
+                backgroundColor: isActive('/about') ? '#1E3A8A' : 'transparent',
+                color: isActive('/about') ? '#ffffff' : '#93C5FD',
+              }}
+              onMouseEnter={e => {
+                if (!isActive('/about')) {
+                  e.currentTarget.style.backgroundColor = '#1E3A8A';
+                  e.currentTarget.style.color = '#ffffff';
+                }
+              }}
+              onMouseLeave={e => {
+                if (!isActive('/about')) {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#93C5FD';
+                }
+              }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              About
             </Link>
 
             {/* Contact */}
