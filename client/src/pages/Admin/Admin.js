@@ -348,7 +348,7 @@ function Admin() {
                     <div className="absolute left-3 top-1/2 -translate-y-1/2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
-                    <input type="email" value={loginData.email} onChange={e => setLoginData({ ...loginData, email: e.target.value })} required placeholder="admin@skcolors.lk" className={`${inputClass} pl-10`} onFocus={e => e.target.style.borderColor = '#3B82F6'} onBlur={e => e.target.style.borderColor = ''} />
+                    <input type="email" value={loginData.email} onChange={e => setLoginData({ ...loginData, email: e.target.value })} required placeholder="example@gmail.com" className={`${inputClass} pl-10`} onFocus={e => e.target.style.borderColor = '#3B82F6'} onBlur={e => e.target.style.borderColor = ''} />
                   </div>
                 </div>
                 <div>
